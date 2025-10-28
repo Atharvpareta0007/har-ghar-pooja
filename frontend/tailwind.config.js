@@ -10,6 +10,7 @@ export default {
     extend: {
       colors: {
         primary: theme.colors.primary,
+        saffron: theme.colors.primary, // Alias for primary color
         gray: theme.colors.gray,
         success: theme.colors.success,
         error: theme.colors.error,

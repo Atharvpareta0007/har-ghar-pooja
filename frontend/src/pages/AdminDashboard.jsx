@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react'
 import { useAuth } from '../context/AuthContext'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
-import { Users, BookOpen, DollarSign, UserCheck } from 'lucide-react'
+import { Users, BookOpen, DollarSign, UserCheck, Check, X, TrendingUp } from 'lucide-react'
+import Navbar from '../components/Navbar'
 
 const AdminDashboard = () => {
   const { user, logout } = useAuth()
@@ -43,88 +44,143 @@ const AdminDashboard = () => {
     }
   }
 
-  if (loading) return <div className="min-h-screen flex items-center justify-center"><div className="text-2xl">Loading...</div></div>
+  if (loading) return (
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-orange-50 via-white to-yellow-50">
+      <div className="text-center">
+        <div className="text-6xl mb-4">🕉️</div>
+        <div className="text-2xl font-semibold text-gray-700">Loading...</div>
+      </div>
+    </div>
+  )
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <nav className="bg-white shadow-md">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-saffron-600">🕉️ Admin Dashboard</h1>
-          <button onClick={logout} className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">
-            Logout
-          </button>
-        </div>
-      </nav>
+    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-yellow-50">
+      <Navbar />
 
-      <div className="max-w-7xl mx-auto px-4 py-8">
-        <h2 className="text-3xl font-bold mb-8 text-gray-800">Overview</h2>
-
-        <div className="grid md:grid-cols-4 gap-6 mb-12">
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <Users className="w-10 h-10 text-saffron-600 mb-2" />
-            <h3 className="text-gray-600">Total Users</h3>
-            <p className="text-3xl font-bold">{stats?.total_users || 0}</p>
-          </div>
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <UserCheck className="w-10 h-10 text-green-600 mb-2" />
-            <h3 className="text-gray-600">Total Pandits</h3>
-            <p className="text-3xl font-bold">{stats?.total_pandits || 0}</p>
-          </div>
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <BookOpen className="w-10 h-10 text-blue-600 mb-2" />
-            <h3 className="text-gray-600">Total Bookings</h3>
-            <p className="text-3xl font-bold">{stats?.total_bookings || 0}</p>
-          </div>
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <DollarSign className="w-10 h-10 text-purple-600 mb-2" />
-            <h3 className="text-gray-600">Total Revenue</h3>
-            <p className="text-3xl font-bold">₹{stats?.total_revenue?.toLocaleString() || 0}</p>
-          </div>
+      <div className="max-w-7xl mx-auto px-4 py-8 mt-20">
+        {/* Header */}
+        <div className="mb-8">
+          <h1 className="text-4xl font-bold text-gray-800 mb-2">Admin Dashboard</h1>
+          <p className="text-gray-600">Manage platform operations and monitor performance</p>
         </div>
 
-        <h2 className="text-3xl font-bold mb-8 text-gray-800">Pandit Approvals</h2>
-        <div className="bg-white rounded-lg shadow-md overflow-hidden">
-          <table className="min-w-full">
-            <thead className="bg-gray-100">
-              <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Name</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">City</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
-              </tr>
-            </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
-              {pandits.map((pandit) => (
-                <tr key={pandit.id}>
-                  <td className="px-6 py-4 whitespace-nowrap">{pandit.user?.name || 'N/A'}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">{pandit.city}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <span className={`px-3 py-1 rounded-full text-sm ${pandit.approved ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'}`}>
-                      {pandit.approved ? 'Approved' : 'Pending'}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap space-x-2">
-                    {!pandit.approved && (
-                      <button
-                        onClick={() => handleApprovePandit(pandit.id, true)}
-                        className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600"
-                      >
-                        Approve
-                      </button>
-                    )}
-                    {pandit.approved && (
-                      <button
-                        onClick={() => handleApprovePandit(pandit.id, false)}
-                        className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
-                      >
-                        Revoke
-                      </button>
-                    )}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        {/* Stats Cards */}
+        <div className="grid md:grid-cols-4 gap-6 mb-8">
+          <div className="bg-gradient-to-br from-blue-500 to-blue-600 text-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all">
+            <div className="flex items-center justify-between mb-4">
+              <Users className="w-12 h-12 opacity-80" />
+              <TrendingUp className="w-6 h-6 opacity-50" />
+            </div>
+            <h3 className="text-blue-100 text-sm font-medium mb-1">Total Users</h3>
+            <p className="text-4xl font-bold">{stats?.total_users || 0}</p>
+          </div>
+          
+          <div className="bg-gradient-to-br from-green-500 to-green-600 text-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all">
+            <div className="flex items-center justify-between mb-4">
+              <UserCheck className="w-12 h-12 opacity-80" />
+              <TrendingUp className="w-6 h-6 opacity-50" />
+            </div>
+            <h3 className="text-green-100 text-sm font-medium mb-1">Active Pandits</h3>
+            <p className="text-4xl font-bold">{stats?.total_pandits || 0}</p>
+          </div>
+          
+          <div className="bg-gradient-to-br from-purple-500 to-purple-600 text-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all">
+            <div className="flex items-center justify-between mb-4">
+              <BookOpen className="w-12 h-12 opacity-80" />
+              <TrendingUp className="w-6 h-6 opacity-50" />
+            </div>
+            <h3 className="text-purple-100 text-sm font-medium mb-1">Total Bookings</h3>
+            <p className="text-4xl font-bold">{stats?.total_bookings || 0}</p>
+          </div>
+          
+          <div className="bg-gradient-to-br from-orange-500 to-orange-600 text-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all">
+            <div className="flex items-center justify-between mb-4">
+              <DollarSign className="w-12 h-12 opacity-80" />
+              <TrendingUp className="w-6 h-6 opacity-50" />
+            </div>
+            <h3 className="text-orange-100 text-sm font-medium mb-1">Total Revenue</h3>
+            <p className="text-4xl font-bold">₹{stats?.total_revenue?.toLocaleString('en-IN') || 0}</p>
+          </div>
+        </div>
+
+        {/* Pandit Management */}
+        <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+          <div className="bg-gradient-to-r from-primary-500 to-orange-600 px-6 py-4">
+            <h2 className="text-2xl font-bold text-white">Pandit Management</h2>
+          </div>
+          
+          <div className="p-6">
+            {pandits.length === 0 ? (
+              <div className="text-center py-12 text-gray-500">
+                <UserCheck className="w-16 h-16 mx-auto mb-4 opacity-20" />
+                <p className="text-xl">No pandits registered yet</p>
+              </div>
+            ) : (
+              <div className="overflow-x-auto">
+                <table className="min-w-full">
+                  <thead>
+                    <tr className="border-b-2 border-gray-200">
+                      <th className="px-6 py-4 text-left text-sm font-bold text-gray-700 uppercase tracking-wider">Pandit</th>
+                      <th className="px-6 py-4 text-left text-sm font-bold text-gray-700 uppercase tracking-wider">Location</th>
+                      <th className="px-6 py-4 text-left text-sm font-bold text-gray-700 uppercase tracking-wider">Phone</th>
+                      <th className="px-6 py-4 text-left text-sm font-bold text-gray-700 uppercase tracking-wider">Status</th>
+                      <th className="px-6 py-4 text-left text-sm font-bold text-gray-700 uppercase tracking-wider">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-100">
+                    {pandits.map((pandit) => (
+                      <tr key={pandit.id} className="hover:bg-orange-50 transition-colors">
+                        <td className="px-6 py-4">
+                          <div className="flex items-center">
+                            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary-500 to-orange-600 flex items-center justify-center text-white font-bold mr-3">
+                              {pandit.user?.name?.charAt(0) || 'P'}
+                            </div>
+                            <div>
+                              <div className="font-semibold text-gray-800">{pandit.user?.name || 'N/A'}</div>
+                              <div className="text-sm text-gray-500">{pandit.bio?.substring(0, 30) || 'Vedic priest'}</div>
+                            </div>
+                          </div>
+                        </td>
+                        <td className="px-6 py-4">
+                          <div className="text-gray-700">{pandit.city}</div>
+                          <div className="text-sm text-gray-500">{pandit.state}</div>
+                        </td>
+                        <td className="px-6 py-4 text-gray-700">{pandit.user?.phone || 'N/A'}</td>
+                        <td className="px-6 py-4">
+                          <span className={`px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wide ${
+                            pandit.approved ? 'bg-green-500 text-white' : 'bg-yellow-500 text-white'
+                          }`}>
+                            {pandit.approved ? '✓ Approved' : '⏳ Pending'}
+                          </span>
+                        </td>
+                        <td className="px-6 py-4">
+                          <div className="flex gap-2">
+                            {!pandit.approved ? (
+                              <button
+                                onClick={() => handleApprovePandit(pandit.id, true)}
+                                className="flex items-center gap-2 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-all font-semibold text-sm"
+                              >
+                                <Check className="w-4 h-4" />
+                                Approve
+                              </button>
+                            ) : (
+                              <button
+                                onClick={() => handleApprovePandit(pandit.id, false)}
+                                className="flex items-center gap-2 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-all font-semibold text-sm"
+                              >
+                                <X className="w-4 h-4" />
+                                Revoke
+                              </button>
+                            )}
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>

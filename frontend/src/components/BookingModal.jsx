@@ -24,10 +24,11 @@ const BookingModal = ({ puja, isOpen, onClose }) => {
       // Fetch available pandits
       axios.get('/api/pandits').then(res => {
         setPandits(res.data)
-        if (res.data.length > 0) {
-          setFormData(prev => ({ ...prev, pandit_id: res.data[0].id }))
-        }
-      }).catch(err => console.error(err))
+        // Don't auto-select, let user choose
+      }).catch(err => {
+        console.error('Error fetching pandits:', err)
+        setError('Failed to load pandits. Please try again.')
+      })
 
       // Load Razorpay script dynamically
       const existing = document.getElementById('razorpay-checkout-js')
@@ -180,7 +181,7 @@ const BookingModal = ({ puja, isOpen, onClose }) => {
 
           <div className="p-8">
             <h2 className="text-3xl font-bold text-gray-800 mb-2">Book Puja</h2>
-            <p className="text-xl text-primary-600 mb-6">{puja.name_local} - ₹{puja.default_price}</p>
+            <p className="text-xl text-primary-600 mb-6">{puja.name_local} - ₹{puja.default_price || 0}</p>
 
             {success ? (
               <div className="text-center py-12">
@@ -238,12 +239,18 @@ const BookingModal = ({ puja, isOpen, onClose }) => {
                     onChange={(e) => setFormData({ ...formData, pandit_id: e.target.value })}
                     className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
                     required
+                    disabled={pandits.length === 0}
                   >
-                    {pandits.map(pandit => (
-                      <option key={pandit.id} value={pandit.id}>
-                        {pandit.user.name} - {pandit.city}, {pandit.state}
-                      </option>
-                    ))}
+                    <option value="">Select a Pandit</option>
+                    {pandits.length === 0 ? (
+                      <option value="" disabled>Loading pandits...</option>
+                    ) : (
+                      pandits.map(pandit => (
+                        <option key={pandit.id} value={pandit.id}>
+                          {pandit.user?.name || 'Unknown'} - {pandit.city}, {pandit.state}
+                        </option>
+                      ))
+                    )}
                   </select>
                 </div>
 
@@ -285,7 +292,7 @@ const BookingModal = ({ puja, isOpen, onClose }) => {
                 <div className="bg-primary-50 p-4 rounded-lg">
                   <div className="flex justify-between text-lg font-semibold">
                     <span>Total Amount:</span>
-                    <span className="text-primary-600">₹{puja.default_price}</span>
+                    <span className="text-primary-600">₹{puja.default_price ? puja.default_price.toLocaleString('en-IN') : '0'}</span>
                   </div>
                   <p className="text-sm text-gray-600 mt-2">
                     Duration: {puja.duration_minutes || 120} minutes
@@ -298,7 +305,7 @@ const BookingModal = ({ puja, isOpen, onClose }) => {
                   disabled={loading}
                   className="w-full bg-primary-500 text-white py-4 rounded-xl hover:bg-primary-600 transition font-bold text-lg disabled:opacity-50 disabled:cursor-not-allowed shadow-md"
                 >
-                  {loading ? 'Processing...' : `Pay ₹${puja.default_price} & Book Now`}
+                  {loading ? 'Processing...' : `Pay ₹${puja.default_price ? puja.default_price.toLocaleString('en-IN') : '0'} & Book Now`}
                 </button>
 
                 <p className="text-xs text-gray-500 text-center">

@@ -149,6 +149,7 @@ class BookingResponse(BookingBase):
     stream_url: Optional[str] = None
     created_at: datetime
     puja_type: Optional[PujaTypeResponse] = None
+    user: Optional['UserResponse'] = None
 
     class Config:
         from_attributes = True
