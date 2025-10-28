@@ -77,8 +77,8 @@ const Hero = () => {
           >
             <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl">
               <img 
-                src="/images/hero-pooja.jpg" 
-                alt="Traditional Pooja Ceremony" 
+                src="/images/hero-image.png" 
+                alt="Har Ghar Pooja - AsthaSetu" 
                 className="w-full h-auto object-cover"
                 onError={(e) => {
                   e.target.onerror = null;
