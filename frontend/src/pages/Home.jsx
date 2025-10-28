@@ -52,7 +52,7 @@ const Home = () => {
             <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
               Connecting devotion with digital convenience
             </p>
-            <a href="#services" className="bg-saffron-500 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-saffron-600 transition inline-block">
+            <a href="#services" className="bg-primary-500 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-primary-600 transition inline-block shadow-md">
               Book a Pooja Now
             </a>
           </motion.div>
@@ -78,29 +78,29 @@ const Home = () => {
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-12 text-gray-800">Our Services</h2>
           <div className="grid md:grid-cols-3 gap-8">
-            <motion.div whileHover={{ scale: 1.05 }} className="bg-white p-8 rounded-xl shadow-lg border-2 border-saffron-100">
+            <motion.div whileHover={{ scale: 1.05 }} className="bg-white p-8 rounded-xl shadow-lg border-2 border-primary-100">
               <div className="text-5xl mb-4">🕉️</div>
-              <h3 className="text-2xl font-bold mb-3 text-saffron-600">Puja Booking</h3>
+              <h3 className="text-2xl font-bold mb-3 text-primary-600">Puja Booking</h3>
               <p className="text-gray-600 mb-4">Book rituals for peace, prosperity, and health</p>
-              <button className="bg-saffron-500 text-white px-6 py-2 rounded-lg hover:bg-saffron-600 w-full">
+              <button className="bg-primary-500 text-white px-6 py-2 rounded-lg hover:bg-primary-600 w-full shadow-md transition-colors">
                 Book Now
               </button>
             </motion.div>
 
-            <motion.div whileHover={{ scale: 1.05 }} className="bg-white p-8 rounded-xl shadow-lg border-2 border-saffron-100">
+            <motion.div whileHover={{ scale: 1.05 }} className="bg-white p-8 rounded-xl shadow-lg border-2 border-primary-100">
               <div className="text-5xl mb-4">🙏</div>
-              <h3 className="text-2xl font-bold mb-3 text-saffron-600">Pandit Consultation</h3>
+              <h3 className="text-2xl font-bold mb-3 text-primary-600">Pandit Consultation</h3>
               <p className="text-gray-600 mb-4">Consult verified Pandits for personalized guidance</p>
-              <button className="bg-saffron-500 text-white px-6 py-2 rounded-lg hover:bg-saffron-600 w-full">
+              <button className="bg-primary-500 text-white px-6 py-2 rounded-lg hover:bg-primary-600 w-full shadow-md transition-colors">
                 Book Now
               </button>
             </motion.div>
 
-            <motion.div whileHover={{ scale: 1.05 }} className="bg-white p-8 rounded-xl shadow-lg border-2 border-saffron-100">
+            <motion.div whileHover={{ scale: 1.05 }} className="bg-white p-8 rounded-xl shadow-lg border-2 border-primary-100">
               <div className="text-5xl mb-4">🌐</div>
-              <h3 className="text-2xl font-bold mb-3 text-saffron-600">Virtual Pooja</h3>
+              <h3 className="text-2xl font-bold mb-3 text-primary-600">Virtual Pooja</h3>
               <p className="text-gray-600 mb-4">Participate in live-streamed pujas from home</p>
-              <button className="bg-saffron-500 text-white px-6 py-2 rounded-lg hover:bg-saffron-600 w-full">
+              <button className="bg-primary-500 text-white px-6 py-2 rounded-lg hover:bg-primary-600 w-full shadow-md transition-colors">
                 Book Now
               </button>
             </motion.div>
@@ -139,7 +139,7 @@ const Home = () => {
             ].map((t, i) => (
               <div key={i} className="bg-white p-6 rounded-xl shadow-md">
                 <p className="text-gray-600 mb-4 italic">"{t.text}"</p>
-                <p className="font-bold text-saffron-600">- {t.name}</p>
+                <p className="font-bold text-primary-600">- {t.name}</p>
               </div>
             ))}
           </div>
@@ -151,11 +151,11 @@ const Home = () => {
         <div className="max-w-2xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-12 text-gray-800">Contact Us</h2>
           <form className="space-y-4">
-            <input type="text" placeholder="Name" className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-saffron-500" />
-            <input type="email" placeholder="Email" className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-saffron-500" />
-            <input type="tel" placeholder="Phone" className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-saffron-500" />
-            <textarea placeholder="Message" rows="4" className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-saffron-500"></textarea>
-            <button type="submit" className="w-full bg-saffron-500 text-white py-3 rounded-lg hover:bg-saffron-600 font-semibold">
+            <input type="text" placeholder="Name" className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500" />
+            <input type="email" placeholder="Email" className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500" />
+            <input type="tel" placeholder="Phone" className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500" />
+            <textarea placeholder="Message" rows="4" className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"></textarea>
+            <button type="submit" className="w-full bg-primary-500 text-white py-3 rounded-lg hover:bg-primary-600 font-semibold shadow-md transition-colors">
               Send Message
             </button>
           </form>
@@ -167,9 +167,9 @@ const Home = () => {
         <div className="max-w-6xl mx-auto text-center">
           <p className="mb-4">&copy; 2025 Har Ghar Pooja. All rights reserved.</p>
           <div className="flex justify-center space-x-6">
-            <a href="#" className="hover:text-saffron-400">Instagram</a>
-            <a href="#" className="hover:text-saffron-400">YouTube</a>
-            <a href="#" className="hover:text-saffron-400">Facebook</a>
+            <a href="#" className="hover:text-primary-400 transition-colors">Instagram</a>
+            <a href="#" className="hover:text-primary-400 transition-colors">YouTube</a>
+            <a href="#" className="hover:text-primary-400 transition-colors">Facebook</a>
           </div>
         </div>
       </footer>
