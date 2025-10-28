@@ -180,7 +180,7 @@ const BookingModal = ({ puja, isOpen, onClose }) => {
 
           <div className="p-8">
             <h2 className="text-3xl font-bold text-gray-800 mb-2">Book Puja</h2>
-            <p className="text-xl text-saffron-600 mb-6">{puja.name_local} - ₹{puja.default_price}</p>
+            <p className="text-xl text-primary-600 mb-6">{puja.name_local} - ₹{puja.default_price}</p>
 
             {success ? (
               <div className="text-center py-12">
@@ -236,7 +236,7 @@ const BookingModal = ({ puja, isOpen, onClose }) => {
                   <select
                     value={formData.pandit_id}
                     onChange={(e) => setFormData({ ...formData, pandit_id: e.target.value })}
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-saffron-500"
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
                     required
                   >
                     {pandits.map(pandit => (
@@ -258,7 +258,7 @@ const BookingModal = ({ puja, isOpen, onClose }) => {
                     value={formData.scheduled_at}
                     onChange={(e) => setFormData({ ...formData, scheduled_at: e.target.value })}
                     min={new Date().toISOString().slice(0, 16)}
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-saffron-500"
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
                     required
                   />
                 </div>
@@ -275,20 +275,20 @@ const BookingModal = ({ puja, isOpen, onClose }) => {
                       onChange={(e) => setFormData({ ...formData, address: e.target.value })}
                       placeholder="Enter your complete address"
                       rows="3"
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-saffron-500"
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
                       required={!formData.is_virtual}
                     />
                   </div>
                 )}
 
                 {/* Price Summary */}
-                <div className="bg-saffron-50 p-4 rounded-lg">
+                <div className="bg-primary-50 p-4 rounded-lg">
                   <div className="flex justify-between text-lg font-semibold">
                     <span>Total Amount:</span>
-                    <span className="text-saffron-600">₹{puja.default_price}</span>
+                    <span className="text-primary-600">₹{puja.default_price}</span>
                   </div>
                   <p className="text-sm text-gray-600 mt-2">
-                    Duration: {puja.duration_minutes} minutes
+                    Duration: {puja.duration_minutes || 120} minutes
                   </p>
                 </div>
 
@@ -296,7 +296,7 @@ const BookingModal = ({ puja, isOpen, onClose }) => {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full bg-saffron-500 text-white py-4 rounded-xl hover:bg-saffron-600 transition font-bold text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full bg-primary-500 text-white py-4 rounded-xl hover:bg-primary-600 transition font-bold text-lg disabled:opacity-50 disabled:cursor-not-allowed shadow-md"
                 >
                   {loading ? 'Processing...' : `Pay ₹${puja.default_price} & Book Now`}
                 </button>

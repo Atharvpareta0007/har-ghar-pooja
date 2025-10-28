@@ -24,7 +24,7 @@ const PujaCard = ({ puja }) => {
     <>
       <motion.div
         whileHover={{ scale: 1.03, y: -5 }}
-        className="bg-white rounded-xl shadow-lg overflow-hidden border-2 border-saffron-100 hover:border-saffron-300 transition-all"
+        className="bg-white rounded-xl shadow-lg overflow-hidden border-2 border-primary-100 hover:border-primary-300 transition-all"
       >
         {/* Image */}
         <div className="relative h-48 overflow-hidden">
@@ -51,7 +51,7 @@ const PujaCard = ({ puja }) => {
 
           <div className="flex justify-between items-center">
             <div>
-              <span className="text-3xl font-bold text-saffron-600">₹{puja.default_price.toLocaleString()}</span>
+              <span className="text-3xl font-bold text-primary-600">₹{puja.default_price.toLocaleString()}</span>
               {puja.min_price !== puja.max_price && (
                 <p className="text-xs text-gray-500">Range: ₹{puja.min_price}-₹{puja.max_price}</p>
               )}
@@ -61,13 +61,13 @@ const PujaCard = ({ puja }) => {
           <div className="mt-4 flex gap-2">
             <button
               onClick={() => setShowDetails(true)}
-              className="flex-1 bg-saffron-500 text-white py-2 rounded-lg hover:bg-saffron-600 transition font-semibold"
+              className="flex-1 bg-primary-500 text-white py-2 rounded-lg hover:bg-primary-600 transition font-semibold shadow-md"
             >
               Read More
             </button>
             <button 
               onClick={handleBookClick}
-              className="flex-1 border-2 border-saffron-500 text-saffron-600 py-2 rounded-lg hover:bg-saffron-50 transition font-semibold"
+              className="flex-1 border-2 border-primary-500 text-primary-600 py-2 rounded-lg hover:bg-primary-50 transition font-semibold"
             >
               Book Now
             </button>
@@ -113,28 +113,28 @@ const PujaCard = ({ puja }) => {
                 {/* Price & Duration */}
                 <div className="flex justify-between items-center mb-6 pb-6 border-b">
                   <div>
-                    <span className="text-4xl font-bold text-saffron-600">₹{puja.default_price.toLocaleString()}</span>
+                    <span className="text-4xl font-bold text-primary-600">₹{puja.default_price.toLocaleString()}</span>
                   </div>
                   <div className="flex items-center text-gray-600">
                     <Clock className="w-5 h-5 mr-2" />
-                    <span>{puja.duration_minutes} minutes</span>
+                    <span>{puja.duration_minutes || 120} minutes</span>
                   </div>
                 </div>
 
                 {/* Description */}
                 <div className="mb-6">
                   <h3 className="text-2xl font-bold text-gray-800 mb-3 flex items-center">
-                    <Sparkles className="w-6 h-6 mr-2 text-saffron-500" />
+                    <Sparkles className="w-6 h-6 mr-2 text-primary-500" />
                     About This Puja
                   </h3>
-                  <p className="text-gray-700 leading-relaxed whitespace-pre-line">{puja.detailed_description}</p>
+                  <p className="text-gray-700 leading-relaxed whitespace-pre-line">{puja.description || puja.detailed_description}</p>
                 </div>
 
                 {/* Benefits */}
                 {puja.benefits && (
                   <div className="mb-6">
                     <h3 className="text-2xl font-bold text-gray-800 mb-3">Benefits</h3>
-                    <div className="bg-saffron-50 p-6 rounded-xl">
+                    <div className="bg-primary-50 p-6 rounded-xl">
                       <p className="text-gray-700 whitespace-pre-line">{puja.benefits}</p>
                     </div>
                   </div>
@@ -143,7 +143,7 @@ const PujaCard = ({ puja }) => {
                 {/* Book Button */}
                 <button 
                   onClick={handleBookClick}
-                  className="w-full bg-saffron-500 text-white py-4 rounded-xl hover:bg-saffron-600 transition font-bold text-lg"
+                  className="w-full bg-primary-500 text-white py-4 rounded-xl hover:bg-primary-600 transition font-bold text-lg shadow-md"
                 >
                   Book This Puja Now
                 </button>
