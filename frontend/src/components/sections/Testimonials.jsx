@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Star, ChevronLeft, ChevronRight, Quote } from 'lucide-react';
 import { Card, CardContent } from '../ui/Card';
 import Badge from '../ui/Badge';
-import Button from '../ui/ButtonNew';
+import Button from '../ui/Button';
 
 const testimonials = [
   {

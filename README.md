@@ -1,258 +1,390 @@
-# 🕉️ Har Ghar Pooja - AsthaSetu for Every Devotee
+# Har Ghar Pooja - AsthaSetu 🕉️
 
-A complete production-ready full-stack web platform for spiritual services, allowing users to book pujas, consult verified Pandits, make secure payments, and join live virtual pujas.
+> Traditional Vedic rituals and pujas at your doorstep. Book experienced pandits for authentic ceremonies, both in-person and virtual.
 
-## 🎯 Features
+![Version](https://img.shields.io/badge/version-2.0.0-orange)
+![License](https://img.shields.io/badge/license-MIT-blue)
+![Status](https://img.shields.io/badge/status-active-success)
 
-### User Features
-- ✅ Register/Login with phone authentication
-- ✅ Browse available pujas with Hindi names
-- ✅ Book puja with date, time, and address
-- ✅ Secure payment integration (Razorpay/Stripe)
-- ✅ View, cancel, or reschedule bookings
-- ✅ Join live puja streams
-- ✅ Chatbot for spiritual Q&A
+## 📋 Table of Contents
 
-### Pandit Features
-- ✅ Apply to become a pandit
-- ✅ Manage bookings (accept/decline/complete)
-- ✅ View earnings and schedule
-- ✅ Manage offered pujas and pricing
+- [Overview](#overview)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Quick Start](#quick-start)
+- [Project Structure](#project-structure)
+- [API Documentation](#api-documentation)
+- [Environment Setup](#environment-setup)
+- [Development](#development)
+- [Deployment](#deployment)
+- [Contributing](#contributing)
 
-### Admin Features
-- ✅ Approve/Reject Pandits
-- ✅ Manage puja catalog (CRUD)
-- ✅ View all users, bookings, payments
-- ✅ Dashboard with revenue analytics
-- ✅ Create virtual puja sessions
+## 🌟 Overview
 
-## 🏗️ Architecture
+**Har Ghar Pooja - AsthaSetu** is a comprehensive platform that bridges traditional spirituality with modern technology. Users can browse and book authentic Vedic rituals, consult experienced pandits, and participate in virtual or in-person pujas.
 
-```
-hgp/
-├── backend/          # FastAPI + PostgreSQL
-│   ├── app/
-│   │   ├── routers/  # API endpoints
-│   │   ├── models.py # Database models
-│   │   ├── schemas.py # Pydantic schemas
-│   │   ├── auth.py   # JWT authentication
-│   │   └── main.py   # FastAPI app
-│   ├── Dockerfile
-│   └── docker-compose.yml
-│
-└── frontend/         # React + Vite
-    ├── src/
-    │   ├── pages/    # Page components
-    │   ├── components/ # Reusable components
-    │   └── context/  # Auth context
-    └── package.json
-```
+### Key Highlights
+
+- 🛕 **15+ Traditional Pujas** - From Pitru Shanti to Vastu Poojan
+- 👨‍🦳 **Verified Pandits** - Experienced and knowledgeable priests
+- 🌐 **Virtual & In-Person** - Flexible puja options
+- 💳 **Secure Payments** - Razorpay integration with mock fallback
+- 📱 **Responsive Design** - Works on all devices
+- ♿ **Accessible** - WCAG AA compliant
+
+## ✨ Features
+
+### For Users
+- Browse 15 different puja services with detailed information
+- Book pujas for specific dates and times
+- Choose between virtual and in-person ceremonies
+- Select preferred pandits
+- Secure online payment processing
+- View booking history and status
+- Join virtual pujas via streaming links
+
+### For Pandits
+- Create and manage profile
+- List available pujas and pricing
+- Accept or decline booking requests
+- Track earnings and completed pujas
+- Manage schedule and availability
+
+### For Admins
+- Manage puja types and pricing
+- Approve pandit applications
+- Monitor all bookings
+- View platform analytics
+- Handle customer support
+
+## 🛠️ Tech Stack
+
+### Frontend
+- **React 18** - UI library
+- **React Router v6** - Navigation
+- **Tailwind CSS** - Styling
+- **Framer Motion** - Animations
+- **Axios** - HTTP client
+- **Lucide React** - Icons
+- **Vite** - Build tool
+
+### Backend
+- **FastAPI** - Python web framework
+- **SQLAlchemy** - ORM
+- **PostgreSQL** - Database (production)
+- **SQLite** - Database (development)
+- **Pydantic** - Data validation
+- **JWT** - Authentication
+- **Razorpay** - Payment gateway
 
 ## 🚀 Quick Start
 
-### Using Docker (Recommended)
+### Prerequisites
+- Python 3.8+
+- Node.js 16+
+- npm or yarn
 
+### Installation
+
+1. **Clone the repository**
 ```bash
-# Clone the repository
+git clone <repository-url>
 cd hgp
-
-# Start backend
-cd backend
-cp .env.example .env
-docker-compose up -d
-
-# Seed database
-docker-compose exec backend python -m app.seed_data
-
-# Start frontend (in new terminal)
-cd ../frontend
-npm install
-npm run dev
 ```
 
-### Manual Setup
-
-#### Backend
+2. **Backend Setup**
 ```bash
 cd backend
-
-# Create virtual environment
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
 pip install -r requirements.txt
-
-# Set up PostgreSQL and update .env
-cp .env.example .env
-
-# Run seed script
-python -m app.seed_data
-
-# Start server
-uvicorn app.main:app --reload
 ```
 
-#### Frontend
+3. **Frontend Setup**
 ```bash
 cd frontend
-
-# Install dependencies
 npm install
+```
 
-# Start dev server
+4. **Environment Variables**
+
+Create `.env` file in backend directory:
+```env
+DATABASE_URL=sqlite:///./hgp.db
+SECRET_KEY=your-secret-key-here
+RAZORPAY_KEY_ID=your-razorpay-key
+RAZORPAY_KEY_SECRET=your-razorpay-secret
+```
+
+5. **Run the Application**
+
+Terminal 1 (Backend):
+```bash
+cd backend
+python -m uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+```
+
+Terminal 2 (Frontend):
+```bash
+cd frontend
 npm run dev
 ```
 
-## 🌐 Access Points
+6. **Access the Application**
+- Frontend: http://localhost:3000
+- Backend API: http://localhost:8000
+- API Docs: http://localhost:8000/docs
 
-- **Frontend**: http://localhost:3000
-- **Backend API**: http://localhost:8000
-- **API Docs**: http://localhost:8000/docs
-- **Database**: PostgreSQL on localhost:5432
+## 📁 Project Structure
 
-## 🔐 Default Credentials
+```
+hgp/
+├── backend/
+│   ├── app/
+│   │   ├── __init__.py
+│   │   ├── main.py              # FastAPI app entry point
+│   │   ├── database.py          # Database configuration
+│   │   ├── models.py            # SQLAlchemy models
+│   │   ├── schemas.py           # Pydantic schemas
+│   │   ├── crud.py              # Database operations
+│   │   ├── auth.py              # Authentication logic
+│   │   ├── seed_data.py         # Database seeding
+│   │   └── routers/
+│   │       ├── auth.py          # Auth endpoints
+│   │       ├── pujas.py         # Puja endpoints
+│   │       ├── bookings.py      # Booking endpoints
+│   │       ├── pandits.py       # Pandit endpoints
+│   │       ├── payments.py      # Payment endpoints
+│   │       ├── admin.py         # Admin endpoints
+│   │       └── chatbot.py       # Chatbot endpoints
+│   ├── requirements.txt
+│   └── .env
+│
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── ui/              # Reusable UI components
+│   │   │   ├── layout/          # Layout components
+│   │   │   ├── sections/        # Page sections
+│   │   │   ├── cards/           # Card components
+│   │   │   ├── forms/           # Form components
+│   │   │   ├── Navbar.jsx
+│   │   │   ├── Hero.jsx
+│   │   │   ├── PujaCard.jsx
+│   │   │   └── BookingModal.jsx
+│   │   ├── pages/
+│   │   │   ├── HomeNew.jsx      # Main landing page
+│   │   │   ├── Login.jsx
+│   │   │   ├── Register.jsx
+│   │   │   ├── Dashboard.jsx    # User dashboard
+│   │   │   ├── PanditDashboard.jsx
+│   │   │   └── AdminDashboard.jsx
+│   │   ├── context/
+│   │   │   ├── AuthContext.jsx  # Auth state management
+│   │   │   └── ThemeContext.jsx
+│   │   ├── styles/
+│   │   │   └── theme.js         # Design tokens
+│   │   ├── utils.js             # Utility functions
+│   │   ├── App.jsx
+│   │   └── main.jsx
+│   ├── public/
+│   │   └── images/
+│   ├── package.json
+│   ├── tailwind.config.js
+│   └── vite.config.js
+│
+└── README.md
+```
 
-| Role | Phone | Password |
-|------|-------|----------|
-| Admin | 919999999999 | Admin@123 |
-| User | 919876543210 | User@123 |
-| Pandit | 919111111111 | Pandit@123 |
-
-## 📋 API Endpoints
+## 📚 API Documentation
 
 ### Authentication
-- `POST /api/auth/register` - Register user
-- `POST /api/auth/login` - Login
-- `POST /api/auth/refresh` - Refresh token
+- `POST /api/auth/register` - Register new user
+- `POST /api/auth/login` - Login user
+- `GET /api/auth/me` - Get current user
 
 ### Pujas
 - `GET /api/pujas` - List all pujas
-- `POST /api/admin/pujas` - Create puja (admin)
+- `GET /api/pujas/{id}` - Get puja details
+- `POST /api/pujas` - Create puja (admin)
+- `PUT /api/pujas/{id}` - Update puja (admin)
+- `DELETE /api/pujas/{id}` - Delete puja (admin)
 
 ### Bookings
+- `GET /api/bookings` - List user bookings
 - `POST /api/bookings` - Create booking
-- `GET /api/bookings/my-bookings` - User bookings
-- `PATCH /api/bookings/{id}/cancel` - Cancel booking
+- `GET /api/bookings/{id}` - Get booking details
+- `PATCH /api/bookings/{id}` - Update booking status
+- `DELETE /api/bookings/{id}` - Cancel booking
+
+### Pandits
+- `GET /api/pandits` - List all pandits
+- `POST /api/pandits` - Create pandit profile
+- `GET /api/pandits/{id}` - Get pandit details
+- `GET /api/pandits/{id}/bookings` - Get pandit bookings
 
 ### Payments
-- `POST /api/payments/create` - Create payment
-- `POST /api/payments/webhook` - Payment webhook
+- `POST /api/payments/razorpay/order` - Create Razorpay order
+- `POST /api/payments/razorpay/verify` - Verify payment
+- `POST /api/payments/create` - Create payment (mock)
+- `POST /api/payments/complete/{id}` - Complete payment
 
-### Admin
-- `GET /api/admin/stats` - Dashboard stats
-- `PATCH /api/admin/pandits/{id}/approve` - Approve pandit
+Full API documentation available at: http://localhost:8000/docs
 
-### Chatbot
-- `POST /api/chatbot` - Ask spiritual questions
-- `POST /api/chatbot/recommend` - Get puja recommendations
+## ⚙️ Environment Setup
 
-## 💾 Database Schema
+### Backend Environment Variables
 
-### Tables
-- **users** - User accounts (user, pandit, admin)
-- **pandits** - Pandit profiles
-- **puja_types** - Puja catalog
-- **bookings** - Puja bookings
-- **payments** - Payment records
-- **consultations** - Pandit consultations
-- **virtual_sessions** - Live puja sessions
+```env
+# Database
+DATABASE_URL=sqlite:///./hgp.db
+# For PostgreSQL: postgresql://user:password@localhost/dbname
 
-## 🎨 Frontend Theme
+# Security
+SECRET_KEY=your-super-secret-key-min-32-characters
+ALGORITHM=HS256
+ACCESS_TOKEN_EXPIRE_MINUTES=30
 
-- **Colors**: White + Saffron Orange (#FF9933)
-- **Fonts**: Poppins, Nunito
-- **Style**: Spiritual + Modern hybrid
-- **Icons**: Lucide React
-- **Animations**: Framer Motion
+# Razorpay (Optional - falls back to mock)
+RAZORPAY_KEY_ID=rzp_test_xxxxx
+RAZORPAY_KEY_SECRET=xxxxx
 
-## 🧪 Testing
+# CORS
+CORS_ORIGINS=http://localhost:3000,http://127.0.0.1:3000
+```
 
+### Frontend Environment Variables
+
+Create `.env` in frontend directory (if needed):
+```env
+VITE_API_URL=http://localhost:8000
+```
+
+## 💻 Development
+
+### Running Tests
 ```bash
 # Backend tests
 cd backend
 pytest
 
-# Test API with Postman collection
-# Import postman_collection.json
-```
-
-## 📦 Deployment
-
-### Backend (Render/Heroku)
-
-```bash
-# Deploy using Docker
-docker build -t hargharpooja-backend .
-docker push your-registry/hargharpooja-backend
-
-# Or use Render/Heroku
-# Connect GitHub repo and deploy
-```
-
-### Frontend (Netlify/Vercel)
-
-```bash
+# Frontend tests
 cd frontend
-npm run build
-
-# Deploy dist/ folder to Netlify/Vercel
-# Or connect GitHub repo for auto-deploy
+npm test
 ```
 
-## 🛠️ Tech Stack
+### Code Formatting
+```bash
+# Backend
+black app/
+isort app/
 
-### Backend
-- FastAPI (Python 3.11+)
-- PostgreSQL
-- SQLAlchemy ORM
-- JWT Authentication
-- Razorpay/Stripe
-- Docker
+# Frontend
+npm run format
+```
 
-### Frontend
-- React 18
-- Vite
-- TailwindCSS
-- Axios
-- React Router
-- Framer Motion
+### Database Migrations
+```bash
+cd backend
+# Create migration
+alembic revision --autogenerate -m "description"
 
-## 📄 Puja Catalog
+# Apply migration
+alembic upgrade head
+```
 
-All 15 pujas seeded with Hindi names:
-- पितृ शांति (₹5,100)
-- नारायण बली (₹21,000)
-- काल सर्प दोष (₹4,100)
-- रुद्राभिषेक (₹1,100-11,000)
-- मंगल शांति (₹3,100)
-- भात पूजन (₹2,100)
-- ग्रहण दोष शांति (₹2,100)
-- नवग्रह शांति (₹2,500)
-- चांडाल दोष शांति (₹2,500)
-- कुंभ विवाह (₹3,500)
-- अर्क विवाह (₹3,100)
-- वास्तु पूजन (₹11,000)
-- ग्रह शांति (₹1,100)
-- जप (₹1,000-51,000)
-- वैवाहिक एवं मांगलिक पूजन (₹11,000)
+### Seeding Database
+```bash
+cd backend
+python -m app.seed_data
+```
+
+## 🚢 Deployment
+
+### Backend Deployment (Railway/Render)
+
+1. Set environment variables
+2. Update `DATABASE_URL` to PostgreSQL
+3. Run migrations
+4. Deploy
+
+### Frontend Deployment (Vercel/Netlify)
+
+1. Build the project: `npm run build`
+2. Deploy `dist` folder
+3. Set environment variables
+4. Configure redirects for SPA
+
+### Docker Deployment
+
+```bash
+# Build and run with Docker Compose
+docker-compose up -d
+```
+
+## 🎨 Design System
+
+### Colors
+- **Primary**: #FF9933 (Saffron/Orange)
+- **Background**: #FFFFFF (White)
+- **Text**: #333333 (Dark Gray)
+- **Success**: #22c55e
+- **Error**: #ef4444
+
+### Typography
+- **Font Family**: Poppins, Nunito, sans-serif
+- **Base Size**: 16px
+- **Line Height**: 1.5-1.75
+
+### Spacing
+- **Section Gaps**: 20-32px
+- **Component Padding**: 16-24px
+
+## 🔐 Security
+
+- JWT-based authentication
+- Password hashing with bcrypt
+- CORS protection
+- SQL injection prevention via ORM
+- XSS protection
+- CSRF tokens for forms
+
+## 📱 Responsive Breakpoints
+
+- **Mobile**: < 768px
+- **Tablet**: 768px - 1024px
+- **Desktop**: > 1024px
 
 ## 🤝 Contributing
 
 1. Fork the repository
-2. Create feature branch
-3. Commit changes
-4. Push to branch
-5. Open pull request
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-## 📝 License
+## 📄 License
 
-MIT License - feel free to use for personal or commercial projects
+This project is licensed under the MIT License.
+
+## 👥 Team
+
+- **Developer**: Your Name
+- **Designer**: Your Name
+- **Project Manager**: Your Name
 
 ## 📞 Support
 
-For issues or questions, please open a GitHub issue.
+For support, email info@hargharpooja.com or join our Slack channel.
+
+## 🙏 Acknowledgments
+
+- All the pandits who provided guidance
+- The open-source community
+- Our beta testers and early users
 
 ---
 
-**Built with 🕉️ and ❤️ for devotees everywhere**
+**Made with ❤️ for devotees across India**
+
+🕉️ **Har Ghar Pooja - AsthaSetu** 🕉️

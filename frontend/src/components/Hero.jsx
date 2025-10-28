@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, Calendar, Phone, Video } from 'lucide-react';
-import Button from './ui/ButtonNew';
+import Button from './ui/Button';
 
 const Hero = () => {
   return (

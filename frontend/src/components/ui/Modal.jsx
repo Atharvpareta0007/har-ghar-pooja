@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { X } from 'lucide-react';
 import { cn } from '../../utils';
-import Button from './ButtonNew';
+import Button from './Button';
 
 const Modal = ({
   isOpen = false,

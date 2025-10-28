@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Clock, MapPin, Video, Info } from 'lucide-react';
 import { Card, CardContent } from '../ui/Card';
-import Button from '../ui/ButtonNew';
+import Button from '../ui/Button';
 import Badge from '../ui/Badge';
 import { formatCurrency } from '../../utils';
 

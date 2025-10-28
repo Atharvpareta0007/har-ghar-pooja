@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Calendar, Video, Users, Phone, BookOpen, Home } from 'lucide-react';
 import { Card, CardContent } from '../ui/Card';
-import Button from '../ui/ButtonNew';
+import Button from '../ui/Button';
 import Badge from '../ui/Badge';
 
 const services = [
