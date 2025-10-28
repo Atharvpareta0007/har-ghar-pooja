@@ -4,7 +4,7 @@ import Button from './ui/Button';
 
 const Hero = () => {
   return (
-    <section id="home" className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-orange-50">
+    <section id="home" className="pt-32 pb-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-orange-50">
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Left Column - Content */}
@@ -89,29 +89,6 @@ const Hero = () => {
               {/* Decorative elements */}
               <div className="absolute -top-6 -right-6 w-24 h-24 bg-primary-100 rounded-full -z-10"></div>
               <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-yellow-100 rounded-full -z-10"></div>
-              
-              {/* Floating testimonial card */}
-              <motion.div 
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.6, duration: 0.6 }}
-                className="absolute -bottom-6 -left-6 bg-white p-4 rounded-xl shadow-lg max-w-xs"
-              >
-                <div className="flex items-center mb-2">
-                  <div className="flex -space-x-2">
-                    {[1, 2, 3].map((i) => (
-                      <div key={i} className="w-8 h-8 rounded-full bg-primary-100 border-2 border-white"></div>
-                    ))}
-                  </div>
-                  <span className="ml-2 text-sm font-medium text-gray-700">500+ Happy Families</span>
-                </div>
-                <p className="text-sm text-gray-600">"The pandit was very knowledgeable and performed the pooja with great devotion. Highly recommended!"</p>
-                <div className="mt-2 text-yellow-400">
-                  {[...Array(5)].map((_, i) => (
-                    <span key={i}>★</span>
-                  ))}
-                </div>
-              </motion.div>
             </div>
           </motion.div>
         </div>
